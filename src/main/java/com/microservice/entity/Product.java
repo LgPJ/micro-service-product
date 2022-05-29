@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Product implements Serializable {
@@ -26,6 +27,18 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 	
+	/*Este atributo es para determinar el puerto 
+	de conexion que esta usando el balanceador de carga
+	*/
+	@Transient
+	private Integer port;
+	
+	public Integer getPort() {
+		return port;
+	}
+	public void setPort(Integer port) {
+		this.port = port;
+	}
 	/** GETTER AND SETTER **/
 	public Long getId() {
 		return id;
