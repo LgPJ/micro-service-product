@@ -32,8 +32,8 @@ public class ProductController {
 	public List<Product> find(){
 		
 		return productService.findAll().stream().map(product -> {
-			//product.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
-			product.setPort(port);
+			product.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
+			//product.setPort(port);
 			return product;
 		}).collect(Collectors.toList());
 	}
@@ -42,8 +42,16 @@ public class ProductController {
 	public Product findById(@PathVariable Long id){
 		
 		Product product = productService.findById(id);
-		//product.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
-		product.setPort(port);
+		product.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
+		//product.setPort(port);
+		
+		//EL hilo de ejecucion se duerme para poder activar el hystrix
+		/*try {
+			Thread.sleep(2000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
+		
 		return product;
 		
 	}
