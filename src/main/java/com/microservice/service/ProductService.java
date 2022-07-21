@@ -29,6 +29,21 @@ public class ProductService {
 		
 	}
 	
+	/*No se coloca el readOnly a los metodos de guardado de informacion*/
+	@Transactional()
+	public Product save(Product product) {
+		
+		return productRepository.save(product);
+	}
+	
+	@Transactional()
+	public void delete(Long id) {
+		
+		productRepository.deleteById(id);
+	}
+	
+	
+	
 	
 	
 	
